@@ -34,14 +34,11 @@ jobs:
 
       - name: Cache node modules
         uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
-          key: npm-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
+          key: npm-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            npm-${{ env.cache-name }}-${{ matrix.node-version }}-
-            npm-${{ env.cache-name }}-
+            npm-${{ matrix.node-version }}-
             npm-
 
       - name: Install Dependencies
